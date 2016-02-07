@@ -25,11 +25,7 @@ class neuron():
 		if total > threshold:
 			return 1
 		else:
-			return 0
-
-	#def change_weights(self, self.set_of_weighted_inputs):
-	#	for i in range(len(self.set_of_weighted_inputs)):
-	#New Comment			
+			return 0		
 
 	def run_neuron(self):
 		total = self.adder()

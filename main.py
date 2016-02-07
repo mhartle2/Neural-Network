@@ -1,6 +1,6 @@
 import load_file as lf
 import layer_of_neurons as ln
-import neuron as n
+import normalize as norm
 
 def main():
 	# Load data files
@@ -12,30 +12,15 @@ def main():
 	diabetes = lf.load_file("diabetes.data", nRows_diabetes, nColumns_diabetes)
 
 	# Normalize data files
+	iris = norm.normalize_iris(iris)
+	diabetes = norm.normalize_diabetes(diabetes)
 
 	# Feed inputs into neurons
-	layer_of_iris = ln.layer_of_neurons(nRows_iris)
-	for row in range(nRows_iris):
-		iris_inputs = []
-		for column in range(nColumns_iris):
-			if column != nColumns_iris - 1:
-				iris_inputs.append(iris[row][column])
-		iris_neuron = n.neuron(iris_inputs)
-		layer_of_iris.add_neuron(iris_neuron)
-	print("Iris Results:________________________")
+	layer_of_iris = ln.layer_of_neurons(nRows_iris, nColumns_iris, iris, "Iris")
 	layer_of_iris.run_neurons()
 	layer_of_iris.print_results()
 
-
-	layer_of_diabetes = ln.layer_of_neurons(nRows_diabetes)
-	for row in range(nRows_diabetes):
-		diabetes_inputs = []
-		for column in range(nColumns_diabetes):
-			if column != nColumns_diabetes - 1:
-				diabetes_inputs.append(diabetes[row][column])
-		diabetes_neuron = n.neuron(diabetes_inputs) 
-		layer_of_diabetes.add_neuron(diabetes_neuron)
-	print("Diabetes Results:___________________")
+	layer_of_diabetes = ln.layer_of_neurons(nRows_diabetes, nColumns_diabetes, diabetes, "Diabetes")
 	layer_of_diabetes.run_neurons()
 	layer_of_diabetes.print_results()
 
